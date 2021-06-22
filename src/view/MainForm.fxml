@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.input.KeyCodeCombination?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.MainFormController"
+            prefHeight="400.0" prefWidth="600.0">
+    <children>
+        <MenuBar layoutY="2.0" AnchorPane.bottomAnchor="375.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#mnuItemNew_OnAction" text="New">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                            </accelerator></MenuItem>
+                        <MenuItem mnemonicParsing="false" text="Open" />
+                        <MenuItem mnemonicParsing="false" text="Save" />
+                        <MenuItem mnemonicParsing="false" text="Save All" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#mnuItemExit_OnAction" text="Exit" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Cut" />
+                        <MenuItem mnemonicParsing="false" text="copy" />
+                        <MenuItem mnemonicParsing="false" text="Paste" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#mnuItemFind_OnAction" text="find" />
+                        <MenuItem mnemonicParsing="false" onAction="#mnuItemReplace_OnAction" text="Replace" />
+                        <MenuItem mnemonicParsing="false" onAction="#mnuItemSelectAll_OnAction" text="Select All">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                            </accelerator></MenuItem>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <TextArea fx:id="txtEditor" layoutY="62.0" prefHeight="292.0" prefWidth="590.0" text="What is Lorem Ipsum?&#10;Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.&#10;&#10;It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)." wrapText="true" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="62.0" />
+        <ToolBar layoutX="5.0" layoutY="358.0" prefHeight="35.0" prefWidth="590.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+        <AnchorPane fx:id="pneReplace" layoutX="284.0" prefHeight="64.0" prefWidth="304.0" style="-fx-background-color: gray;" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <TextField fx:id="txtSearch" layoutX="6.0" layoutY="6.0" prefHeight="25.0" prefWidth="224.0" />
+                <Button fx:id="btnFindNext" layoutX="239.0" layoutY="6.0" mnemonicParsing="false" onAction="#btnFindNext_OnAction" text="&gt;" />
+                <Button fx:id="btnFindPrevious" layoutX="274.0" layoutY="6.0" mnemonicParsing="false" onAction="#btnFindPrevious_OnAction" text="&lt;" />
+                <TextField fx:id="txtReplace" layoutX="8.0" layoutY="36.0" prefHeight="25.0" prefWidth="155.0" />
+                <Button fx:id="btnReplace" layoutX="169.0" layoutY="36.0" mnemonicParsing="false" onAction="#btnReplace_OnAction" text="Replace" />
+                <Button fx:id="btnReplaceAll" layoutX="228.0" layoutY="36.0" mnemonicParsing="false" onAction="#btnReplaceAll_OnAction" text="ReplaceAll" />
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="pneFind" layoutX="294.0" layoutY="10.0" prefHeight="42.0" prefWidth="304.0" style="-fx-background-color: gray;">
+            <children>
+                <TextField fx:id="txtFind" layoutX="6.0" layoutY="6.0" prefHeight="25.0" prefWidth="224.0" />
+                <Button fx:id="btnFindNext1" layoutX="239.0" layoutY="6.0" mnemonicParsing="false" onAction="#btnFindNext_OnAction" text="&gt;" />
+                <Button fx:id="btnFindPrevious1" layoutX="274.0" layoutY="6.0" mnemonicParsing="false" onAction="#btnFindPrevious_OnAction" text="&lt;" />
+            </children>
+        </AnchorPane>
+    </children>
+
+
+</AnchorPane>
