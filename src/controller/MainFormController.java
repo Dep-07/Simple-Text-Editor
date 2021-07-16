@@ -1,14 +1,23 @@
+
+/*
+ * Copyright (c) 2021 Thisaru Dasith. All rights reserved.
+ * Licensed under the MIT License. See License.txt in the project root for license information.
+ */
+
 package controller;
 
 import javafx.beans.value.ChangeListener;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
+import javafx.print.PrinterJob;
+import javafx.scene.control.*;
 
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import util.FXDesign;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -23,14 +32,19 @@ public class MainFormController {
     public AnchorPane pneReplace;
     public AnchorPane pneFind;
     public TextField txtFind;
+    public MenuItem mnuFileOpen;
 
 
     private int findOfSet = -1;
     private final List<Index> index = new ArrayList<>();
+    private PrinterJob printerJob;
+
+
 
 
     public  void initialize(){
 
+        this.printerJob = PrinterJob.createPrinterJob();
 
         ChangeListener t = (ChangeListener<String>) (observable, oldValue, newValue) -> searchMatch(newValue);
 
@@ -43,6 +57,7 @@ public class MainFormController {
     }
 
     private void searchMatch(String value){
+        FXDesign.highlightOnTextArea(txtEditor,value, Color.web("yellow", 0.8));
 
         Pattern patter = Pattern.compile(value);
         Matcher matcher = patter.matcher(txtEditor.getText());
@@ -89,9 +104,12 @@ public class MainFormController {
     }
 
     public void mnuItemFind_OnAction(ActionEvent actionEvent) {
+
         if (pneReplace.isVisible()){
+
             pneReplace.setVisible(false);
         }
+
         pneFind.setVisible(true);
         txtFind.requestFocus();
 
@@ -99,31 +117,39 @@ public class MainFormController {
     }
 
     public void mnuItemReplace_OnAction(ActionEvent actionEvent) {
+
         if (pneFind.isVisible()){
+
             pneFind.setVisible(false);
         }
+
         pneReplace.setVisible(true);
         txtSearch.requestFocus();
 
     }
 
     public void mnuItemSelectAll_OnAction(ActionEvent actionEvent) {
+
         if (!txtEditor.getText().isEmpty()){
+
             txtEditor.selectAll();
         }
     }
 
     public void mnuItemNew_OnAction(ActionEvent actionEvent) {
+
         txtEditor.clear();
         txtEditor.requestFocus();
     }
 
     public void mnuItemExit_OnAction(ActionEvent actionEvent) {
+
         System.exit(0);
 
     }
 
     public void btnReplace_OnAction(ActionEvent actionEvent) {
+
         String textReplace = txtReplace.getText();
         String text = txtEditor.getText();
         int startIndex = index.get(findOfSet-1).startIndex;
@@ -136,6 +162,7 @@ public class MainFormController {
     }
 
     public void btnReplaceAll_OnAction(ActionEvent actionEvent) {
+
         String textReplace = txtReplace.getText();
         String textSearch = txtSearch.getText();
         String text = txtEditor.getText();
@@ -145,16 +172,98 @@ public class MainFormController {
     }
 
 
+    public void mnuItemSavaAs_OnAction(ActionEvent actionEvent) {
 
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save File As");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
+                new FileChooser.ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        File file = fileChooser.showSaveDialog(txtEditor.getScene().getWindow());
+
+        if (file == null) return;
+
+        try(FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bfw = new BufferedWriter(fileWriter)) {
+
+            bfw.write(txtEditor.getText());
+
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
+
+
+    }
+
+    public void mnuFileOpen_OnAction(ActionEvent actionEvent) {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All text files","*.txt","*.html"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All files","*"));
+        File file = fileChooser.showOpenDialog(txtEditor.getScene().getWindow());
+        System.out.println(file);
+
+        if(fileChooser == null){
+
+            return;
+        }
+
+        txtEditor.clear();
+
+        try(FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader)){
+
+            String line = null;
+            while ((line =bufferedReader.readLine()) != null){
+
+                txtEditor.appendText(line + '\n');
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void mnuItemSave_OnAction(ActionEvent actionEvent) {
+
+
+    }
+
+    public void mnuItemPrint_OnAction(ActionEvent actionEvent) {
+
+        boolean printDialog = printerJob.showPrintDialog(txtEditor.getScene().getWindow());
+        if(printDialog){
+
+            printerJob.printPage(txtEditor.lookup("Text"));
+            
+        }
+
+    }
+
+    public void mnuItemPageSetup_OnAction(ActionEvent actionEvent) {
+
+        printerJob.showPageSetupDialog(txtEditor.getScene().getWindow());
+
+    }
 }
 
 class Index{
+
     int startIndex;
     int endIndex;
 
     public Index(int startIndex, int endIndex) {
+
         this.startIndex = startIndex;
         this.endIndex = endIndex;
+
     }
 
 }
