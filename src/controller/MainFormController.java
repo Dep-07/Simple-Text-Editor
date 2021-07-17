@@ -115,20 +115,17 @@ public class MainFormController {
     public void mnuItemFind_OnAction(ActionEvent actionEvent) {
 
         if (pneReplace.isVisible()){
-
             pneReplace.setVisible(false);
         }
 
         pneFind.setVisible(true);
         txtFind.requestFocus();
 
-
     }
 
     public void mnuItemReplace_OnAction(ActionEvent actionEvent) {
 
         if (pneFind.isVisible()){
-
             pneFind.setVisible(false);
         }
 
@@ -140,7 +137,6 @@ public class MainFormController {
     public void mnuItemSelectAll_OnAction(ActionEvent actionEvent) {
 
         if (!txtEditor.getText().isEmpty()){
-
             txtEditor.selectAll();
         }
     }
