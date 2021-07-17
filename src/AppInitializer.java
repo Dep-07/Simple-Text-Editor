@@ -16,8 +16,8 @@ import java.util.Properties;
 
 public class AppInitializer extends Application {
 
-    Properties prop = new Properties();
-    File propFile =new File("application.properties");
+     public static Properties prop = new Properties();
+     public static File propFile =new File("application.properties");
 
     public static void main(String[] args) {
         launch(args);

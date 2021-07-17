@@ -72,6 +72,7 @@
                         <KeyCodeCombination alt="UP" code="F" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
                         <MenuItem mnemonicParsing="false" onAction="#mnuItemReplace_OnAction" text="Replace" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem mnemonicParsing="false" onAction="#mnuItemSelectAll_OnAction" text="Select All">
                             <accelerator>
                                 <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
@@ -85,7 +86,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <TextArea fx:id="txtEditor" layoutX="3.0" layoutY="28.0" onMousePressed="#textSelect_OnMousePressed" prefHeight="370.0" prefWidth="594.0" wrapText="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="28.0" />
+        <TextArea fx:id="txtEditor" layoutX="3.0" layoutY="28.0" onDragDropped="#txtEditor_OnDragDropped" onDragOver="#txtEditor_OnDragOver" onMousePressed="#textSelect_OnMousePressed" prefHeight="370.0" prefWidth="594.0" wrapText="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="28.0" />
         <AnchorPane fx:id="pneReplace" layoutX="284.0" prefHeight="64.0" prefWidth="304.0" style="-fx-background-color: gray;" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="0.0">
             <children>
                 <TextField fx:id="txtSearch" layoutX="6.0" layoutY="6.0" prefHeight="25.0" prefWidth="224.0" />

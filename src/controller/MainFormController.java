@@ -16,8 +16,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TouchEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -201,6 +203,8 @@ public class MainFormController {
 
         }
 
+
+
     }
 
     public void mnuFileOpen_OnAction(ActionEvent actionEvent) {
@@ -245,8 +249,8 @@ public class MainFormController {
             }
         }else {
             File file = new File(filepath);
-            try(FileWriter fileWriter = new FileWriter(file);
-                BufferedWriter bfw = new BufferedWriter(fileWriter)) {
+            try (FileWriter fileWriter = new FileWriter(file);
+                 BufferedWriter bfw = new BufferedWriter(fileWriter)) {
 
                 bfw.write(txtEditor.getText());
 
@@ -257,7 +261,6 @@ public class MainFormController {
 
             }
         }
-
 
 
 
@@ -320,6 +323,38 @@ public class MainFormController {
         newStage.show();
 
     }
+    public void openFile(File file){
+
+        try (FileReader fileReader = new FileReader(file);
+
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
+            String line = null;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                txtEditor.appendText(line + '\n');
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void txtEditor_OnDragDropped(DragEvent dragEvent) {
+
+        if (dragEvent.getDragboard().hasFiles()){
+            File file = dragEvent.getDragboard().getFiles().get(0);
+            openFile(file);
+            dragEvent.setDropCompleted(true);
+        }
+    }
+
+    public void txtEditor_OnDragOver(DragEvent dragEvent) {
+
+        if (dragEvent.getDragboard().hasFiles()){
+            dragEvent.acceptTransferModes(TransferMode.ANY);
+        }
+    }
+
 }
 
 class Index{
