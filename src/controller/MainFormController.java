@@ -10,14 +10,19 @@ import com.sun.org.apache.xalan.internal.xsltc.trax.XSLTCSource;
 import javafx.beans.value.ChangeListener;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.print.PrinterJob;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import util.FXDesign;
 
 import java.io.*;
@@ -148,6 +153,7 @@ public class MainFormController {
 
         txtEditor.clear();
         txtEditor.requestFocus();
+
     }
 
     public void mnuItemExit_OnAction(ActionEvent actionEvent) {
@@ -286,6 +292,19 @@ public class MainFormController {
         System.out.println("hi");
         String selectedText = txtEditor.getSelectedText();
         System.out.println(selectedText);
+
+    }
+
+    public void mnuItemNewWindow_OnAction(ActionEvent actionEvent) throws IOException {
+
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/MainForm.fxml"));
+        Stage newStage = new Stage();
+        Scene newScene = new Scene(root);
+        newStage.setScene(newScene);
+        newStage.setTitle("Simple Text Editor");
+        newStage.setResizable(false);
+        newStage.centerOnScreen();
+        newStage.show();
 
     }
 }
