@@ -6,12 +6,15 @@
 
 package controller;
 
+import com.sun.org.apache.xalan.internal.xsltc.trax.XSLTCSource;
 import javafx.beans.value.ChangeListener;
 
 import javafx.event.ActionEvent;
 import javafx.print.PrinterJob;
 import javafx.scene.control.*;
 
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -54,9 +57,14 @@ public class MainFormController {
 
         pneReplace.setVisible(false);
         pneFind.setVisible(false);
+
+
+
+
     }
 
     private void searchMatch(String value){
+
         FXDesign.highlightOnTextArea(txtEditor,value, Color.web("yellow", 0.8));
 
         Pattern patter = Pattern.compile(value);
@@ -250,6 +258,34 @@ public class MainFormController {
     public void mnuItemPageSetup_OnAction(ActionEvent actionEvent) {
 
         printerJob.showPageSetupDialog(txtEditor.getScene().getWindow());
+
+    }
+
+
+    public void mnuItemCut_OnAction(ActionEvent actionEvent) {
+
+        txtEditor.cut();
+
+    }
+
+    public void mnuItemCopy_OnAction(ActionEvent actionEvent) {
+
+        txtEditor.copy();
+
+    }
+
+    public void mnuItemPaste_OnAction(ActionEvent actionEvent) {
+
+        txtEditor.paste();
+
+
+    }
+
+
+    public void textSelect_OnMousePressed(MouseEvent mouseEvent) {
+        System.out.println("hi");
+        String selectedText = txtEditor.getSelectedText();
+        System.out.println(selectedText);
 
     }
 }
