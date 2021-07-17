@@ -28,6 +28,7 @@ import util.FXDesign;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,7 +43,6 @@ public class MainFormController {
     public TextField txtFind;
     public MenuItem mnuFileOpen;
     private String filepath;
-
 
     private int findOfSet = -1;
     private final List<Index> index = new ArrayList<>();
@@ -62,8 +62,6 @@ public class MainFormController {
 
         pneReplace.setVisible(false);
         pneFind.setVisible(false);
-
-
 
     }
 
@@ -188,7 +186,6 @@ public class MainFormController {
                 new FileChooser.ExtensionFilter("All Files", "*.*"));
         File file = fileChooser.showSaveDialog(txtEditor.getScene().getWindow());
         filepath = file.getAbsolutePath();
-        System.out.println(filepath);
 
         if (file == null) return;
 
@@ -203,7 +200,6 @@ public class MainFormController {
             e.printStackTrace();
 
         }
-
 
     }
 
