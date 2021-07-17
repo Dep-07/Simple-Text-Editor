@@ -41,6 +41,7 @@ public class MainFormController {
     public AnchorPane pneFind;
     public TextField txtFind;
     public MenuItem mnuFileOpen;
+    private String filepath;
 
 
     private int findOfSet = -1;
@@ -59,10 +60,8 @@ public class MainFormController {
         txtSearch.textProperty().addListener(t);
         txtFind.textProperty().addListener(t);
 
-
         pneReplace.setVisible(false);
         pneFind.setVisible(false);
-
 
 
 
@@ -82,9 +81,6 @@ public class MainFormController {
         }
 
     }
-
-
-
 
     public void btnFindNext_OnAction(ActionEvent actionEvent) {
 
@@ -195,6 +191,8 @@ public class MainFormController {
                 new FileChooser.ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac"),
                 new FileChooser.ExtensionFilter("All Files", "*.*"));
         File file = fileChooser.showSaveDialog(txtEditor.getScene().getWindow());
+        filepath = file.getAbsolutePath();
+        System.out.println(filepath);
 
         if (file == null) return;
 
@@ -246,6 +244,29 @@ public class MainFormController {
     }
 
     public void mnuItemSave_OnAction(ActionEvent actionEvent) {
+
+        if(filepath == null){
+            try {
+                mnuItemSavaAs_OnAction(null);
+            }catch (NullPointerException e){
+
+            }
+        }else {
+            File file = new File(filepath);
+            try(FileWriter fileWriter = new FileWriter(file);
+                BufferedWriter bfw = new BufferedWriter(fileWriter)) {
+
+                bfw.write(txtEditor.getText());
+
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+
+            }
+        }
+
+
 
 
     }

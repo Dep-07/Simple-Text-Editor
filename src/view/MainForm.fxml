@@ -7,7 +7,6 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -31,11 +30,23 @@
                         <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
                      </accelerator>
                   </MenuItem>
-                        <MenuItem fx:id="mnuFileOpen" mnemonicParsing="false" onAction="#mnuFileOpen_OnAction" text="Open" />
-                        <MenuItem mnemonicParsing="false" onAction="#mnuItemSave_OnAction" text="Save" />
-                        <MenuItem fx:id="mnuItemSavaAs" mnemonicParsing="false" onAction="#mnuItemSavaAs_OnAction" text="Save As" />
+                        <MenuItem fx:id="mnuFileOpen" mnemonicParsing="false" onAction="#mnuFileOpen_OnAction" text="Open">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#mnuItemSave_OnAction" text="Save">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                        <MenuItem fx:id="mnuItemSavaAs" mnemonicParsing="false" onAction="#mnuItemSavaAs_OnAction" text="Save As">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
                         <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" onAction="#mnuItemPrint_OnAction" text="Print " />
+                  <MenuItem mnemonicParsing="false" onAction="#mnuItemPrint_OnAction" text="Print ">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
                   <MenuItem mnemonicParsing="false" onAction="#mnuItemPageSetup_OnAction" text="Page Setup" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem mnemonicParsing="false" onAction="#mnuItemExit_OnAction" text="Exit" />
@@ -74,8 +85,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <TextArea fx:id="txtEditor" layoutX="5.0" layoutY="64.0" onMousePressed="#textSelect_OnMousePressed" prefHeight="292.0" prefWidth="590.0" wrapText="true" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="64.0" />
-        <ToolBar layoutX="5.0" layoutY="358.0" prefHeight="35.0" prefWidth="590.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+        <TextArea fx:id="txtEditor" layoutX="3.0" layoutY="28.0" onMousePressed="#textSelect_OnMousePressed" prefHeight="370.0" prefWidth="594.0" wrapText="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="28.0" />
         <AnchorPane fx:id="pneReplace" layoutX="284.0" prefHeight="64.0" prefWidth="304.0" style="-fx-background-color: gray;" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="0.0">
             <children>
                 <TextField fx:id="txtSearch" layoutX="6.0" layoutY="6.0" prefHeight="25.0" prefWidth="224.0" />
